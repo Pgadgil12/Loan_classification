@@ -15,7 +15,7 @@ Here are the links to my project resources:
 </div>
 <h3 style="font-size:18px;">Docker Container:</h3>
 <div markdown="1">
-    <a href="#important-links" target="_blank">Docker Hub Container</a>
+    <a href="https://hub.docker.com/repository/docker/pgadgil12/loan_classi/general" target="_blank">Docker Hub Container</a>
 </div>
 
 

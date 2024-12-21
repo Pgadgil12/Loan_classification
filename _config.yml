@@ -10,7 +10,7 @@ myst_enable_extensions:
 
 html:
   output_folder: docs
-  baseurl: /Mood_classification_book/
+  baseurl: /Loan_classification_book/
   use_repository_button: true
 
 repository:
