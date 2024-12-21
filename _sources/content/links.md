@@ -3,7 +3,7 @@
 Here are the links to my project resources:
 <h3 style="font-size:18px;">Deployed Model Link:</h3>
 <div markdown="1">
-    <a href="#important-links" target="_blank">Deployed Model</a>
+    <a href="http://3.144.97.117:8501/" target="_blank">Deployed Model</a>
 </div>
 <h3 style="font-size:18px;">MLflow Experiments:</h3>
 <div markdown="1">
