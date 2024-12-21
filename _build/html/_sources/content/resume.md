@@ -2,9 +2,9 @@
 
 Here is my resume:
 
-[Download Resume (PDF)](Harshal%20Patil_BUF.pdf)
+[Download Resume (PDF)](Prathamesh_Gadgil_Resume.pdf)
 
 ## Summary
-- **Name**: Harshal Sanjiv Patil
-- **Education**: MS in Data Science
-- **Skills**: Python, ML, Streamlit, FastAPI, Docker ,
+- **Name**: Prathamesh Kishor Gadgil
+- **Education**: MS in Engineering Science Data Science
+- **Skills**: Python, ML, Streamlit, FastAPI, Docker 

@@ -1,5 +1,5 @@
-title: "Income Classification"
-author: "Harshal Patil"
+title: "Loan Approval Predictor"
+author: "Prathamesh Kishor Gadgil"
 logo: ""
 execute:
   execute_notebooks: "off"
@@ -14,7 +14,7 @@ html:
   use_repository_button: true
 
 repository:
-  url: https://github.com/Pofit188/Income_notebook
+  url: https://github.com/Pgadgil12/Loan_classification.git
   path_to_book: ./
   branch: main
 
