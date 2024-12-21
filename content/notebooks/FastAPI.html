@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>FastAPI Code &#8212; Income Classification</title>
+    <title>FastAPI Code &#8212; Loan Approval Predictor</title>
   
   
   
@@ -65,7 +65,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="StreamLit Code" href="Streamlit.html" />
-    <link rel="prev" title="Required File and modules Import" href="Classification.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="Loan_classi.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -143,7 +143,7 @@
   
   
   
-    <p class="title logo__title">Income Classification</p>
+    <p class="title logo__title">Loan Approval Predictor</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -166,33 +166,6 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../resume.html">Resume</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../code_section.html">Code Files</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="Classification.html"><strong>Required File and modules Import</strong></a></li>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">FastAPI Code</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Streamlit.html">StreamLit Code</a></li>
 </ul>
@@ -246,7 +219,7 @@
 <div class="article-header-buttons">
 
 
-<a href="https://github.com/Pofit188/Income_notebook" target="_blank"
+<a href="https://github.com/Pgadgil12/Loan_classification.git" target="_blank"
    class="btn btn-sm btn-source-repository-button"
    title="Source repository"
    data-bs-placement="bottom" data-bs-toggle="tooltip"
@@ -371,59 +344,62 @@
 <span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
 
-
-
-<span class="c1"># Use the absolute path to the model file</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;/Users/patil/Workspace/VS code/Income_Classification/app/fastapi/random_forest_model.joblib&#39;</span><span class="p">)</span>
-
+<span class="c1"># Load the trained model (provide the correct path to your .joblib model file)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;D:/WorkSpace/EAS 503/Loan Approval Classification/App/FastAPI/final_rf_model.joblib&quot;</span><span class="p">)</span>
 
 <span class="c1"># Initialize FastAPI app</span>
 <span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
 
-<span class="c1"># Define the input data structure using Pydantic</span>
+<span class="c1"># Define the input data structure using Pydantic (replace with actual features)</span>
 <span class="k">class</span> <span class="nc">UserInput</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-    <span class="n">Age</span><span class="p">:</span> <span class="nb">int</span>
-    <span class="n">Hours_per_Week</span><span class="p">:</span> <span class="nb">int</span>
-    <span class="n">Education_Num</span><span class="p">:</span> <span class="nb">int</span>
-    <span class="n">Capital_Gain</span><span class="p">:</span> <span class="nb">int</span>
-    <span class="n">Capital_Loss</span><span class="p">:</span> <span class="nb">int</span>
-    <span class="n">Fnlwgt</span><span class="p">:</span> <span class="nb">int</span>
-    <span class="n">Sex</span><span class="p">:</span> <span class="nb">str</span>
-    <span class="n">Relationship</span><span class="p">:</span> <span class="nb">str</span>
-    <span class="n">Workclass</span><span class="p">:</span> <span class="nb">str</span>
-    <span class="n">Occupation</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">person_age</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">person_income</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">person_emp_exp</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">loan_amnt</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">loan_int_rate</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">loan_percent_income</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">cb_person_cred_hist_length</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">credit_score</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">person_education</span><span class="p">:</span> <span class="nb">str</span>  <span class="c1"># Categorical feature (e.g., &#39;Bachelor&#39;, &#39;Master&#39;, etc.)</span>
+    <span class="n">person_home_ownership</span><span class="p">:</span> <span class="nb">str</span>  <span class="c1"># Categorical feature (e.g., &#39;OWN&#39;, &#39;RENT&#39;)</span>
+    <span class="n">loan_intent</span><span class="p">:</span> <span class="nb">str</span>  <span class="c1"># Categorical feature (e.g., &#39;EDUCATION&#39;, &#39;PERSONAL&#39;, etc.)</span>
+    <span class="n">previous_loan_defaults_on_file</span><span class="p">:</span> <span class="nb">str</span>  <span class="c1"># Categorical feature (e.g., &#39;Yes&#39;, &#39;No&#39;)</span>
 
-<span class="c1"># Function to preprocess user input</span>
+<span class="c1"># Function to preprocess the input data (e.g., One-Hot Encoding, derived features)</span>
 <span class="k">def</span> <span class="nf">preprocess_input</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
-    <span class="c1"># Derived Features</span>
-    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Age_to_hours_ratio&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Hours_per_Week&#39;</span><span class="p">]</span>
-    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Age_squared&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span>
-    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Hours_per_week_squared&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Hours_per_Week&#39;</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span>
-    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Age_hours_interaction&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Hours_per_Week&#39;</span><span class="p">]</span>
+    <span class="c1"># Calculate derived features (loan_percent_income and others)</span>
+    <span class="c1">#data[&#39;loan_percent_income&#39;] = data[&#39;loan_amnt&#39;] / (data[&#39;person_income&#39;] + 1e-9)  # Prevent division by zero</span>
+    <span class="c1">#data[&#39;debt_to_income_ratio&#39;] = data[&#39;loan_amnt&#39;] / (data[&#39;person_income&#39;] + 1e-9)  # Debt-to-income ratio</span>
+    <span class="c1">#data[&#39;interest_installment_ratio&#39;] = data[&#39;loan_int_rate&#39;] / (data[&#39;loan_percent_income&#39;] + 1e-9)  # Interest/Installment ratio</span>
     
-    <span class="c1"># One-Hot Encoding for categorical columns</span>
-    <span class="n">categorical_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Sex&quot;</span><span class="p">,</span> <span class="s2">&quot;Relationship&quot;</span><span class="p">,</span> <span class="s2">&quot;Workclass&quot;</span><span class="p">,</span> <span class="s2">&quot;Occupation&quot;</span><span class="p">]</span>
+    <span class="c1"># One-hot encoding for categorical columns</span>
+    <span class="n">categorical_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;person_education&#39;</span><span class="p">,</span> <span class="s1">&#39;person_home_ownership&#39;</span><span class="p">,</span> <span class="s1">&#39;loan_intent&#39;</span><span class="p">,</span> <span class="s1">&#39;previous_loan_defaults_on_file&#39;</span><span class="p">]</span>
     <span class="n">data_encoded</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">data</span><span class="p">]),</span> <span class="n">columns</span><span class="o">=</span><span class="n">categorical_cols</span><span class="p">,</span> <span class="n">drop_first</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-    <span class="c1"># Ensure the processed input matches the model&#39;s expected feature set</span>
+    
+    <span class="c1"># Ensure input matches the model&#39;s expected columns</span>
     <span class="n">required_columns</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="s1">&#39;Hours_per_Week&#39;</span><span class="p">,</span> <span class="s1">&#39;Education_Num&#39;</span><span class="p">,</span> <span class="s1">&#39;Capital_Gain&#39;</span><span class="p">,</span> <span class="s1">&#39;Capital_Loss&#39;</span><span class="p">,</span> <span class="s1">&#39;Fnlwgt&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Sex_Male&#39;</span><span class="p">,</span> <span class="s1">&#39;Relationship_Not-in-family&#39;</span><span class="p">,</span> <span class="s1">&#39;Relationship_Own-child&#39;</span><span class="p">,</span> <span class="s1">&#39;Relationship_Unmarried&#39;</span><span class="p">,</span> 
-        <span class="s1">&#39;Relationship_Wife&#39;</span><span class="p">,</span> <span class="s1">&#39;Workclass_Private&#39;</span><span class="p">,</span> <span class="s1">&#39;Occupation_Exec-managerial&#39;</span><span class="p">,</span> 
-        <span class="s1">&#39;Occupation_Prof-specialty&#39;</span><span class="p">,</span> <span class="s1">&#39;Education_9&#39;</span><span class="p">,</span> 
-        <span class="s1">&#39;Age_to_hours_ratio&#39;</span><span class="p">,</span> <span class="s1">&#39;Age_squared&#39;</span><span class="p">,</span> <span class="s1">&#39;Hours_per_week_squared&#39;</span><span class="p">,</span> <span class="s1">&#39;Age_hours_interaction&#39;</span>
+        <span class="s1">&#39;person_age&#39;</span><span class="p">,</span> <span class="s1">&#39;person_income&#39;</span><span class="p">,</span> <span class="s1">&#39;person_emp_exp&#39;</span><span class="p">,</span> <span class="s1">&#39;loan_amnt&#39;</span><span class="p">,</span> <span class="s1">&#39;loan_int_rate&#39;</span><span class="p">,</span> <span class="s1">&#39;loan_percent_income&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;cb_person_cred_hist_length&#39;</span><span class="p">,</span> <span class="s1">&#39;credit_score&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;person_education_Bachelor&#39;</span><span class="p">,</span> <span class="s1">&#39;person_education_Doctorate&#39;</span><span class="p">,</span> <span class="s1">&#39;person_education_High School&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;person_education_Master&#39;</span><span class="p">,</span> <span class="s1">&#39;person_home_ownership_OWN&#39;</span><span class="p">,</span> <span class="s1">&#39;person_home_ownership_RENT&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;loan_intent_EDUCATION&#39;</span><span class="p">,</span> <span class="s1">&#39;loan_intent_HOMEIMPROVEMENT&#39;</span><span class="p">,</span> <span class="s1">&#39;loan_intent_MEDICAL&#39;</span><span class="p">,</span> <span class="s1">&#39;loan_intent_PERSONAL&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;previous_loan_defaults_on_file_Yes&#39;</span>
     <span class="p">]</span>
+    
+    <span class="c1"># Add missing columns with 0 if not present in the processed data</span>
     <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">required_columns</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">col</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data_encoded</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
-            <span class="n">data_encoded</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">data_encoded</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Add missing columns with 0</span>
+    
+    <span class="c1"># Reorder columns to match the required order</span>
     <span class="n">data_encoded</span> <span class="o">=</span> <span class="n">data_encoded</span><span class="p">[</span><span class="n">required_columns</span><span class="p">]</span>
 
     <span class="k">return</span> <span class="n">data_encoded</span>
 
 <span class="c1"># Define the prediction endpoint</span>
 <span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/predict&quot;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">predict_income</span><span class="p">(</span><span class="n">input_data</span><span class="p">:</span> <span class="n">UserInput</span><span class="p">):</span>
-    <span class="c1"># Convert input data to a dictionary</span>
+<span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="n">input_data</span><span class="p">:</span> <span class="n">UserInput</span><span class="p">):</span>
+    <span class="c1"># Convert the input data to a dictionary</span>
     <span class="n">input_dict</span> <span class="o">=</span> <span class="n">input_data</span><span class="o">.</span><span class="n">dict</span><span class="p">()</span>
 
     <span class="c1"># Preprocess and predict</span>
@@ -432,37 +408,14 @@
 
     <span class="c1"># Return the prediction result</span>
     <span class="k">if</span> <span class="n">prediction</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;Predicted Income&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;=50K&quot;</span><span class="p">}</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;Prediction&quot;</span><span class="p">:</span> <span class="s2">&quot;Loan Rejected&quot;</span><span class="p">}</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;Predicted Income&quot;</span><span class="p">:</span> <span class="s2">&quot;&gt;50K&quot;</span><span class="p">}</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;Prediction&quot;</span><span class="p">:</span> <span class="s2">&quot;Loan Approved&quot;</span><span class="p">}</span>
 
+<span class="c1"># Run the app using uvicorn</span>
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="kn">import</span> <span class="nn">uvicorn</span>
     <span class="n">uvicorn</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s2">&quot;0.0.0.0&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8000</span><span class="p">)</span>
-
-
-<span class="sd">&quot;&quot;&quot;</span>
-
-<span class="sd">[Unit]</span>
-<span class="sd">Description=gunicorn daemon</span>
-<span class="sd">Requires=gunicorn.socket</span>
-<span class="sd">After=network.target</span>
-
-<span class="sd">[Service]</span>
-<span class="sd">User=ubuntu</span>
-<span class="sd">Group=www-data</span>
-<span class="sd">WorkingDirectory=/home/ec2-user/income</span>
-<span class="sd">ExecStart=/home/ec2-user/income/env/bin/gunicorn \</span>
-<span class="sd">          --access-logfile - \</span>
-<span class="sd">          --workers 5 \</span>
-<span class="sd">          --bind unix:/run/gunicorn.sock \</span>
-<span class="sd">          --worker-class uvicorn.workers.UvicornWorker \</span>
-<span class="sd">          main:app</span>
-
-<span class="sd">[Install]</span>
-<span class="sd">WantedBy=multi-user.target</span>
-
-<span class="sd">&quot;&quot;&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -482,7 +435,7 @@
         },
         kernelOptions: {
             name: "python3",
-            path: "./content/notebooks"
+            path: "./content\notebooks"
         },
         predefinedOutput: true
     }
@@ -500,12 +453,12 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="Classification.html"
+       href="Loan_classi.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><strong>Required File and modules Import</strong></p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
       </div>
     </a>
     <a class="right-next"
@@ -533,7 +486,7 @@
   <div class="footer-item">
     
 <p class="component-author">
-By Harshal Patil
+By Prathamesh Kishor Gadgil
 </p>
 
   </div>
